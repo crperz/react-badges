@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const BadgeForm = ({ formValues, onChange, onSubmit }) => {
   return (
-    <div>
+    <Fragment>
       <h1>New Attendant</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
@@ -64,7 +64,7 @@ const BadgeForm = ({ formValues, onChange, onSubmit }) => {
           Save
         </button>
       </form>
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
-import Navbar from '../components/Navbar';
 import BadgesList from '../components/BadgesList';
 
 const Badges = () => {
@@ -40,9 +39,7 @@ const Badges = () => {
     }
   ]);
   return (
-    <div>
-      <Navbar />
-
+    <Fragment>
       <div className="Badges">
         <div className="Badges__hero">
           <div className="Badges__container">
@@ -64,7 +61,7 @@ const Badges = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

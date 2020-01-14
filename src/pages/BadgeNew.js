@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import './styles/BadgeNew.css';
 import header from '../images/badge-header.svg';
-import Navbar from '../components/Navbar';
 import BadgeForm from '../components/BadgeForm';
 import Badge from '../components/Badge';
 
@@ -26,8 +25,7 @@ const BadgeNew = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <Fragment>
       <div className="BadgeNew__hero">
         <img className="img-fluid" src={header} alt="Logo" />
       </div>
@@ -53,7 +51,7 @@ const BadgeNew = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
