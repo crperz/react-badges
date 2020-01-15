@@ -1,15 +1,12 @@
 import React from 'react';
 
 import './styles/BadgesList.css';
+import Gravatar from './Gravatar';
 
 const BadgeListItem = ({ badge }) => {
   return (
     <div className="BadgesListItem">
-      <img
-        className="BadgesListItem__avatar"
-        src={badge.avatarUrl}
-        alt={`${badge.firstName} ${badge.lastName}`}
-      />
+      <Gravatar className="BadgesListItem__avatar" email={badge.email} />
       <div>
         <strong>
           {badge.firstName} {badge.lastName}
