@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg';
 import BadgesList from '../components/BadgesList';
+import PageLoading from '../pages/PageLoading';
+import PageError from '../pages/PageError';
 
 import api from '../api';
 
@@ -27,24 +29,22 @@ const Badges = () => {
   When you return a function in the callback passed to useEffect, the returned function will be called before the component is removed from the UI.
   */
   useEffect(() => {
-    const fetchData = () => {
-      api.badges
-        .list()
-        .then(res => {
-          setData(res);
-          setLoading(false);
-        })
-        .catch(err => {
-          setLoading(false);
-          setError(err);
-        });
+    const fetchData = async () => {
+      try {
+        const data = await api.badges.list();
+        setLoading(false);
+        setData(data);
+      } catch (error) {
+        setLoading(false);
+        setError(error);
+      }
     };
     fetchData();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <PageLoading />;
 
-  if (error) return <h1>Error</h1>;
+  if (error) return <PageError error={error} />;
 
   return (
     <Fragment>
