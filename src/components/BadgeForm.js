@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 const BadgeForm = ({ error, formValues, onChange, onSubmit }) => {
   return (
     <Fragment>
-      <h1>New Attendant</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="firstName">First Name</label>

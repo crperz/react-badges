@@ -1,13 +1,13 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
-import './styles/BadgeNew.css';
+import './styles/BadgeEdit.css';
 import header from '../images/platziconf-logo.svg';
 import PageLoading from './PageLoading';
 import BadgeForm from '../components/BadgeForm';
 import Badge from '../components/Badge';
 import api from '../api';
 
-const BadgeNew = ({ history }) => {
+const BadgeEdit = ({ history, match }) => {
   const initialState = {
     email: '',
     firstName: '',
@@ -16,8 +16,24 @@ const BadgeNew = ({ history }) => {
     twitter: ''
   };
   const [form, setForm] = useState(initialState);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setError(null);
+    setLoading(true);
+
+    const fetchBadge = async () => {
+      try {
+        const data = await api.badges.read(match.params.id);
+        setForm(data);
+      } catch (error) {
+        setError(error);
+      }
+      setLoading(false);
+    };
+    fetchBadge();
+  }, [match]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -30,9 +46,9 @@ const BadgeNew = ({ history }) => {
     setError(null);
 
     try {
-      await api.badges.create(form);
+      await api.badges.update(match.params.id, form);
       setLoading(false);
-      // (match, location, history react-router props)
+
       history.push('/badges');
     } catch (err) {
       setError(err);
@@ -44,8 +60,8 @@ const BadgeNew = ({ history }) => {
 
   return (
     <Fragment>
-      <div className="BadgeNew__hero">
-        <img className="BadgeNew__hero-image img-fluid" src={header} alt="Logo" />
+      <div className="BadgeEdit__hero">
+        <img className="BadgeEdit__hero-image img-fluid" src={header} alt="Logo" />
       </div>
 
       <div className="container">
@@ -60,7 +76,7 @@ const BadgeNew = ({ history }) => {
             />
           </div>
           <div className="col-6">
-            <h1>New Attendant</h1>
+            <h1>Edit Attendant</h1>
             <BadgeForm
               onChange={handleChange}
               onSubmit={handleSubmit}
@@ -74,4 +90,4 @@ const BadgeNew = ({ history }) => {
   );
 };
 
-export default BadgeNew;
+export default BadgeEdit;

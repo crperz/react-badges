@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles/BadgesList.css';
 import Gravatar from './Gravatar';
@@ -25,7 +26,12 @@ const BadgesList = ({ badges }) => {
       <ul className="list-unstyled">
         {badges.reverse().map(badge => (
           <li key={badge.id}>
-            <BadgeListItem badge={badge} />
+            <Link
+              className="text-reset text-decoration-none"
+              to={`/badges/${badge.id}/edit`}
+            >
+              <BadgeListItem badge={badge} />
+            </Link>
           </li>
         ))}
       </ul>
