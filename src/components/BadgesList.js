@@ -23,7 +23,7 @@ const BadgesList = ({ badges }) => {
   return (
     <div className="BadgesList">
       <ul className="list-unstyled">
-        {badges.map(badge => (
+        {badges.reverse().map(badge => (
           <li key={badge.id}>
             <BadgeListItem badge={badge} />
           </li>

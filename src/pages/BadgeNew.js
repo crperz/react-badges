@@ -2,11 +2,12 @@ import React, { useState, Fragment } from 'react';
 
 import './styles/BadgeNew.css';
 import header from '../images/platziconf-logo.svg';
+import PageLoading from './PageLoading';
 import BadgeForm from '../components/BadgeForm';
 import Badge from '../components/Badge';
 import api from '../api';
 
-const BadgeNew = () => {
+const BadgeNew = ({ history }) => {
   const initialState = {
     email: '',
     firstName: '',
@@ -15,7 +16,7 @@ const BadgeNew = () => {
     twitter: ''
   };
   const [form, setForm] = useState(initialState);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleChange = event => {
@@ -25,15 +26,21 @@ const BadgeNew = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
       await api.badges.create(form);
       setLoading(false);
+      // (match, location, history react-router props)
+      history.push('/badges');
     } catch (err) {
       setError(err);
       setLoading(false);
     }
   };
+
+  if (loading) return <PageLoading />;
 
   return (
     <Fragment>
@@ -57,6 +64,7 @@ const BadgeNew = () => {
               onChange={handleChange}
               onSubmit={handleSubmit}
               formValues={form}
+              error={error}
             />
           </div>
         </div>

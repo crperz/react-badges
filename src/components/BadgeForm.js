@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const BadgeForm = ({ formValues, onChange, onSubmit }) => {
+const BadgeForm = ({ error, formValues, onChange, onSubmit }) => {
   return (
     <Fragment>
       <h1>New Attendant</h1>
@@ -63,6 +63,12 @@ const BadgeForm = ({ formValues, onChange, onSubmit }) => {
         <button type="submit" className="btn btn-primary">
           Save
         </button>
+
+        {error && (
+          <div className="alert alert-danger my-3" role="alert">
+            {error.message}
+          </div>
+        )}
       </form>
     </Fragment>
   );
