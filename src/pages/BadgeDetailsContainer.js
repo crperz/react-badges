@@ -10,10 +10,11 @@ En la programación es bueno separar las tareas en diferentes funciones y en Rea
 Cuando un componente hace demasiado, probablemente es mejor dividirlo en dos.
 Esta técnica de componentes presentacionales y componentes container es común, útil y hace parte de las buenas prácticas.
 */
-const BadgeDetailsContainer = ({ match }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const BadgeDetailsContainer = ({ history, match }) => {
   const [badge, setBadge] = useState(undefined);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchBadge = async () => {
@@ -32,6 +33,28 @@ const BadgeDetailsContainer = ({ match }) => {
     fetchBadge();
   }, [match]);
 
+  const handleOpenModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false);
+  };
+
+  const handleDeleteBadge = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      await api.badges.remove(match.params.id);
+
+      history.push('/badges');
+    } catch (error) {
+      setError(error);
+    }
+    setLoading(false);
+  };
+
   if (loading) {
     return <PageLoading />;
   }
@@ -40,7 +63,15 @@ const BadgeDetailsContainer = ({ match }) => {
     return <PageError error={error} />;
   }
 
-  return <BadgeDetails badge={badge} />;
+  return (
+    <BadgeDetails
+      badge={badge}
+      isOpenModal={isOpenModal}
+      onCloseModal={handleCloseModal}
+      onDeleteBadge={handleDeleteBadge}
+      onOpenModal={handleOpenModal}
+    />
+  );
 };
 
 export default BadgeDetailsContainer;
