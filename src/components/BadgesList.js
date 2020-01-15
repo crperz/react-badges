@@ -26,10 +26,7 @@ const BadgesList = ({ badges }) => {
       <ul className="list-unstyled">
         {badges.reverse().map(badge => (
           <li key={badge.id}>
-            <Link
-              className="text-reset text-decoration-none"
-              to={`/badges/${badge.id}/edit`}
-            >
+            <Link className="text-reset text-decoration-none" to={`/badges/${badge.id}`}>
               <BadgeListItem badge={badge} />
             </Link>
           </li>
