@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './styles/PageLoading.css';
 import Loader from '../components/Loader';
+
+import './styles/PageLoading.css';
 
 const PageLoading = () => {
   return (

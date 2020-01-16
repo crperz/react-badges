@@ -1,24 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles/BadgesList.css';
-import Gravatar from './Gravatar';
+import BadgesListItem from './BadgesListItem';
 
-const BadgeListItem = ({ badge }) => {
-  return (
-    <div className="BadgesListItem">
-      <Gravatar className="BadgesListItem__avatar" email={badge.email} />
-      <div>
-        <strong>
-          {badge.firstName} {badge.lastName}
-        </strong>
-        <br />@{badge.twitter}
-        <br />
-        {badge.jobTitle}
-      </div>
-    </div>
-  );
-};
+import './styles/BadgesList.css';
 
 // Custom Hooks
 // It must begin with the keyword 'use'
@@ -56,12 +41,11 @@ const BadgesList = ({ badges }) => {
   return (
     <div className="BadgesList">
       <div className="form-group">
-        <label htmlFor="filter">Filter Badges</label>
         <input
           className="form-control"
-          id="filter"
           onChange={handleChange}
-          type="text"
+          placeholder="Search..."
+          type="search"
           value={query}
         />
       </div>
@@ -70,7 +54,7 @@ const BadgesList = ({ badges }) => {
         {filteredBadges.reverse().map(badge => (
           <li key={badge.id}>
             <Link className="text-reset text-decoration-none" to={`/badges/${badge.id}`}>
-              <BadgeListItem badge={badge} />
+              <BadgesListItem badge={badge} />
             </Link>
           </li>
         ))}

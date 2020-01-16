@@ -42,23 +42,19 @@ const BadgeDetails = ({
             />
           </div>
           <div className="col">
-            <h2>Actions</h2>
-            <div>
-              <div>
-                <Link className="btn btn-primary mb-4" to={`/badges/${badge.id}/edit`}>
-                  Edit
-                </Link>
-              </div>
-              <div>
-                <button onClick={onOpenModal} className="btn btn-danger">
-                  Delete
-                </button>
-                <DeleteBadgeModal
-                  isOpen={isOpenModal}
-                  onClose={onCloseModal}
-                  onDeleteBadge={onDeleteBadge}
-                />
-              </div>
+            <div className="BadgeDetails__actions">
+              <h2>Actions:</h2>
+              <Link className="btn btn-primary mb-4" to={`/badges/${badge.id}/edit`}>
+                Edit
+              </Link>
+              <button onClick={onOpenModal} className="btn btn-danger">
+                Delete
+              </button>
+              <DeleteBadgeModal
+                isOpen={isOpenModal}
+                onClose={onCloseModal}
+                onDeleteBadge={onDeleteBadge}
+              />
             </div>
           </div>
         </div>

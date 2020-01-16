@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Layout from './Layout';
-import Home from '../pages/Home';
 import Badges from '../pages/Badges';
-import BadgeNew from '../pages/BadgeNew';
 import BadgeDetailsContainer from '../pages/BadgeDetailsContainer';
 import BadgeEdit from '../pages/BadgeEdit';
+import BadgeNew from '../pages/BadgeNew';
+import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
+import Layout from './Layout';
 
 const App = () => {
   return (

@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from 'react';
 
+import api from '../api';
+import PageLoading from './PageLoading';
+import Badge from '../components/Badge';
+import BadgeForm from '../components/BadgeForm';
+
 import './styles/BadgeNew.css';
 import header from '../images/platziconf-logo.svg';
-import PageLoading from './PageLoading';
-import BadgeForm from '../components/BadgeForm';
-import Badge from '../components/Badge';
-import api from '../api';
 
 const BadgeNew = ({ history }) => {
   const initialState = {

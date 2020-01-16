@@ -1,13 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles/Badges.css';
-import confLogo from '../images/badge-header.svg';
-import BadgesList from '../components/BadgesList';
-import PageLoading from '../pages/PageLoading';
-import PageError from '../pages/PageError';
-
 import api from '../api';
+import PageError from '../pages/PageError';
+import PageLoading from '../pages/PageLoading';
+import BadgesList from '../components/BadgesList';
+
+import './styles/Badges.css';
+import confLogo from '../images/platziconf-logo.svg';
 
 const Badges = () => {
   const [data, setData] = useState([]);

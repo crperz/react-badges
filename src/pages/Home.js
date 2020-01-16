@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles/Home.css';
-import platziConfLogo from '../images/platziconf-logo.svg';
 import astronautsImage from '../images/astronauts.svg';
+import platziConfLogo from '../images/platziconf-logo.svg';
 
 const Home = () => {
   return (

@@ -1,8 +1,9 @@
 import React from 'react';
 
+import Gravatar from './Gravatar';
+
 import './styles/Badge.css';
 import confLogo from '../images/badge-header.svg';
-import Gravatar from './Gravatar';
 
 const Badge = ({ email, firstName, jobTitle, lastName, twitter }) => {
   return (

@@ -18,3 +18,9 @@
   justify-content: flex-end;
   margin-bottom: 1rem;
 }
+
+.BadgeDetails__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
